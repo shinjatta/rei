@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { BuscadorComponent } from './buscador/buscador.component';
 import { DefinicionComponent } from './definicion/definicion.component';
 import { EjemplosComponent } from './ejemplos/ejemplos.component';
+import { ImagenesComponent } from './imagenes/imagenes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BuscadorComponent,
     DefinicionComponent,
-    EjemplosComponent
+    EjemplosComponent,
+    ImagenesComponent
   ],
   imports: [
     BrowserModule,
