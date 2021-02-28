@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from "../data.service";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-buscador',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent implements OnInit {
+  search:string="";
+  subscription!: Subscription;
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
-  ngOnInit(): void {
+  buscar(){
+    console.log(this.search);
+  }
+  
+  ngOnInit() {
+    this.subscription = this.data.currentSearch.subscribe(search => this.search = search)
   }
 
+  
 }

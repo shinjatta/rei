@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BuscadorComponent} from '../buscador/buscador.component'
 
 @Component({
   selector: 'app-definicion',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./definicion.component.css']
 })
 export class DefinicionComponent implements OnInit {
-
-  constructor() { }
+  palabraPrincipal="";
+  lectura="けいしょう";
+  traduccionIngles="inheritance, succession";
+  traduccionEspañol="herencia, sucesión";
+  constructor(private buscadorComponent: BuscadorComponent) { }
 
   ngOnInit(): void {
+    this.palabraPrincipal=this.buscadorComponent.search;
   }
 
 }
