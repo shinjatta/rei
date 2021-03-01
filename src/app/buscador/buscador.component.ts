@@ -14,7 +14,7 @@ export class BuscadorComponent implements OnInit {
   constructor(private data: DataService) { }
 
   buscar(){
-    console.log(this.search);
+   this.data.changeSearch(this.search);
   }
   
   ngOnInit() {

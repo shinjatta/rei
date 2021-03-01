@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {BuscadorComponent} from '../buscador/buscador.component'
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-definicion',
@@ -11,10 +13,12 @@ export class DefinicionComponent implements OnInit {
   lectura="けいしょう";
   traduccionIngles="inheritance, succession";
   traduccionEspañol="herencia, sucesión";
-  constructor(private buscadorComponent: BuscadorComponent) { }
+  subscription!: Subscription;
+  
+  constructor(private buscadorComponent: BuscadorComponent, private data: DataService) { }
 
   ngOnInit(): void {
-    this.palabraPrincipal=this.buscadorComponent.search;
+    this.subscription = this.data.currentSearch.subscribe(search => this.palabraPrincipal = search)
   }
 
 }
