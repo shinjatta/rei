@@ -8,6 +8,8 @@ import { BuscadorComponent } from './buscador/buscador.component';
 import { DefinicionComponent } from './definicion/definicion.component';
 import { EjemplosComponent } from './ejemplos/ejemplos.component';
 import { ImagenesComponent } from './imagenes/imagenes.component';
+import { TwitterComponent } from './twitter/twitter.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { ImagenesComponent } from './imagenes/imagenes.component';
     BuscadorComponent,
     DefinicionComponent,
     EjemplosComponent,
-    ImagenesComponent
+    ImagenesComponent,
+    TwitterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     BuscadorComponent

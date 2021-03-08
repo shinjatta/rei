@@ -15,6 +15,7 @@ export class BuscadorComponent implements OnInit {
 
   buscar(){
    this.data.changeSearch(this.search);
+   location.reload;
   }
   
   ngOnInit() {
