@@ -7,7 +7,7 @@ import { HttpInterceptor, HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  private buscadorSource = new BehaviorSubject('継承');
+  private buscadorSource = new BehaviorSubject('ある');
   currentSearch = this.buscadorSource.asObservable();
 
   constructor(private httpClient: HttpClient) { }
@@ -15,7 +15,6 @@ export class DataService {
   changeSearch(search: string) {
     this.buscadorSource.next(search)
   }
-
 
 
   private API_JISHO = "https://kanji-cors-bypass.herokuapp.com/api/";

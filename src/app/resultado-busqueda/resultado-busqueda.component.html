@@ -1,0 +1,107 @@
+<div class="container-flow">
+    <div class="row">
+        <div class="col-2">
+            <img src="assets/logo.png" class="logo" alt="">
+        </div>
+    <div class="col buscador">
+        <div class="row">
+            <div class="col-8">
+                 <input type="text" [(ngModel)]="search"class="form-control" name="search" id="inputSearch" placeholder="Enter the word you want to search" > 
+             </div>
+             <div class="col-4">
+                 <button class="btn btn-primary  btn-block" (click)=buscar()> <i class="fas fa-search"></i> Search</button>
+             </div>
+         </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row cajita text-center">
+                                <div class="col-6">
+                                    <div class="ml-2">
+                                        <h1><b>{{palabraPrincipal}}</b></h1>
+                                        <p>{{lectura}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mt-4">
+                                        <p>{{traduccionIngles}}</p>
+                                        <p>traduccion español</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12 cajita ejemplo m-2">
+                                  <h2><small>Examples</small></h2>
+                                  <ul>
+                                    <li>
+                                      <blockquote class="blockquote-reverse">
+                                        マオリ語<b>継承</b>のキーマンに聞いた
+                                        <footer><a href="https://www.nhk.or.jp/hokkaido/articles/slug-n0055dadf6e66">www.nhk.or.jp</a></footer>
+                                      </blockquote>
+                                    </li>
+                                    <li>
+                                      <blockquote class="blockquote-reverse">
+                                        2004年に同法人を立ち上げ、地域の食文化の<b>継承</b>や食育活動に取り組んでいる
+                                        <footer><a
+                                            href="https://www.asahi.com/articles/ASP2S6SM9NDZTLTB00G.html?iref=pc_ss_date_article">www.asahi.com</a>
+                                        </footer>
+                                      </blockquote>
+                                    </li>
+                                    <li>
+                                      <blockquote class="blockquote-reverse">
+                                        君主制をとっている国では、<b>継承</b>をめぐる紛争を防ぐため、<b>継承</b>法を明確に定めていることが多い。しかし、歴史上は数々の<b>継承</b>紛争が生じている。中国王朝はその最たるものであり、非常に多くの事例がある。
+                                        <footer><a
+                                            href="https://ja.wikipedia.org/wiki/%E7%8E%8B%E4%BD%8D%E7%B6%99%E6%89%BF">www.ja.wikipedia.org</a>
+                                        </footer>
+                                      </blockquote>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <a class="twitter-timeline" href="https://twitter.com/TwitterDev" data-width="300"
+                    data-height="500">
+                    Tweets by @TwitterDev
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div><div class="row border rounded text-center">
+                    <div class="col-4">
+                        <div class="mt-2 ml-2">
+                            <img src="assets/keisho1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mt-2 ml-2">
+                            <img src="assets/keisho2.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mt-2 ml-2">
+                            <img src="assets/keisho3.png" alt="">
+                        </div>
+                    </div>
+                </div></div>
+            </div>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
