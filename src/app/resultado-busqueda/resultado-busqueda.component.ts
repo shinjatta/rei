@@ -23,9 +23,7 @@ export class ResultadoBusquedaComponent implements OnInit {
     .subscribe(
       (result:any) => {
         this.lectura=result["0"]["japanese"]["0"]["reading"];
-        this.traduccionIngles=result["0"]["senses"]["0"]["english_definitions"]["0"];
-        console.log(this.lectura);
-        console.log(this.traduccionIngles)
+        this.traduccionIngles=result["0"]["senses"]["0"]["english_definitions"]["0"].toUpperCase();
       },
       (error) => {
        console.log(error);
@@ -34,7 +32,15 @@ export class ResultadoBusquedaComponent implements OnInit {
   }
   
   ngOnInit() {
-  
+    /* var translate = require('node-google-translate-skidz');
+
+    translate({
+      text: this.traduccionIngles,
+      source: 'en',
+      target: 'es'
+    }, function(result: any) {
+      console.log(result);
+    }); */
   }
 
 

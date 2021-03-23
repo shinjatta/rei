@@ -8,6 +8,12 @@
     "types": [
       "jasmine",
       "node"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "crypto": [
+        "../../node_modules/crypto-js"
     ]
+  }
   }
 }

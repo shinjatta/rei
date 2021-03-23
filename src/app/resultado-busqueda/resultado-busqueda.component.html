@@ -1,107 +1,119 @@
-<div class="container-flow">
-    <div class="row">
-        <div class="col-2">
-            <img src="assets/logo.png" class="logo" alt="">
+<!-- Nav Bar Start -->
+<section class="max-w-1280px mx-auto px-4">
+    <nav class="d-flex justify-content-md-start justify-content-center py-4">
+      <a href="#">
+        <img src="./assets/logo.png" alt="" class="logo">
+      </a>
+    </nav>
+  </section>
+  <!-- Nav Bar End -->
+  
+  <!-- Search Bar Start -->
+  <Section class="max-w-1280px mx-auto mb-3 -mt-64px">
+    <div class="contain-box">
+      <form class="row no-gutters">
+        <div class="col-lg-8 col-md-7 col-8 px-lg-3 px-sm-2 px-1">
+          <input [(ngModel)]="search" class="form-control bg-white rounded-lg shadow border-0 w-100 h-50px px-4 mr-lg-4 mr-2" type="text"
+          placeholder="Enter the word you want to search" name="search" id="inputSearch">
         </div>
-    <div class="col buscador">
-        <div class="row">
-            <div class="col-8">
-                 <input type="text" [(ngModel)]="search"class="form-control" name="search" id="inputSearch" placeholder="Enter the word you want to search" > 
-             </div>
-             <div class="col-4">
-                 <button class="btn btn-primary  btn-block" (click)=buscar()> <i class="fas fa-search"></i> Search</button>
-             </div>
-         </div>
+        <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
+          <button type="button"
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()><span
+              class=" bg-red2 w-36px h-36px d-flex align-items-center justify-content-center rounded"></span>
+            <span class="ml-2 d-sm-block d-none"><i
+                class="fas fa-search"></i> SEARCH</span></button>
     </div>
-    <div class="col-2"></div>
-</div>
-
-
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col">
-            <div class="row">
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row cajita text-center">
-                                <div class="col-6">
-                                    <div class="ml-2">
-                                        <h1><b>{{palabraPrincipal}}</b></h1>
-                                        <p>{{lectura}}</p>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="mt-4">
-                                        <p>{{traduccionIngles}}</p>
-                                        <p>traduccion español</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-12 cajita ejemplo m-2">
-                                  <h2><small>Examples</small></h2>
-                                  <ul>
-                                    <li>
-                                      <blockquote class="blockquote-reverse">
-                                        マオリ語<b>継承</b>のキーマンに聞いた
-                                        <footer><a href="https://www.nhk.or.jp/hokkaido/articles/slug-n0055dadf6e66">www.nhk.or.jp</a></footer>
-                                      </blockquote>
-                                    </li>
-                                    <li>
-                                      <blockquote class="blockquote-reverse">
-                                        2004年に同法人を立ち上げ、地域の食文化の<b>継承</b>や食育活動に取り組んでいる
-                                        <footer><a
-                                            href="https://www.asahi.com/articles/ASP2S6SM9NDZTLTB00G.html?iref=pc_ss_date_article">www.asahi.com</a>
-                                        </footer>
-                                      </blockquote>
-                                    </li>
-                                    <li>
-                                      <blockquote class="blockquote-reverse">
-                                        君主制をとっている国では、<b>継承</b>をめぐる紛争を防ぐため、<b>継承</b>法を明確に定めていることが多い。しかし、歴史上は数々の<b>継承</b>紛争が生じている。中国王朝はその最たるものであり、非常に多くの事例がある。
-                                        <footer><a
-                                            href="https://ja.wikipedia.org/wiki/%E7%8E%8B%E4%BD%8D%E7%B6%99%E6%89%BF">www.ja.wikipedia.org</a>
-                                        </footer>
-                                      </blockquote>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <a class="twitter-timeline" href="https://twitter.com/TwitterDev" data-width="300"
-                    data-height="500">
-                    Tweets by @TwitterDev
-                    </a>
-                </div>
+  <!-- Search Bar End -->
+  
+  <!-- Main Box Start -->
+  <Section class="max-w-1280px mx-auto">
+    <div class="">
+      <div class="row no-gutters">
+        <div class="col-lg-8 px-lg-3 px-sm-2 px-1 py-4">
+          <div class="bg-white rounded-xl shadow-lg px-5 py-4 mb-4">
+            <div class="row align-items-center">
+              <div class="col-xl-6">
+                <h1 class="display-1 text-paragraph font-weight-normal text-center">{{palabraPrincipal}}</h1>
+                <h2 class="text-paragraph text-center">{{lectura}}</h2>
+              </div>
+              <div class="col-xl-6 text-xl-left text-center">
+                <h2 class="text-paragraph text-break mb-3">{{traduccionIngles}}
+                </h2>
+                <h2 class="text-paragraph text-break">HERENCIA
+                </h2>
+              </div>
             </div>
-            <div class="row">
-                <div><div class="row border rounded text-center">
-                    <div class="col-4">
-                        <div class="mt-2 ml-2">
-                            <img src="assets/keisho1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mt-2 ml-2">
-                            <img src="assets/keisho2.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="mt-2 ml-2">
-                            <img src="assets/keisho3.png" alt="">
-                        </div>
-                    </div>
-                </div></div>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg px-5 py-4 d-lg-none d-block mb-4">
+            <h2 class="text-paragraph mb-3">Images</h2>
+            <div class="carouse w-full">
+              <div class="mx-4"><img src="./assets/keisho1.png" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="./assets/keisho3.png" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
             </div>
-
+          </div>
+          <div class="bg-white rounded-xl shadow-lg px-5 py-4">
+            <h2 class="text-paragraph mb-3">Examples</h2>
+            <div class="border-left-5 border-color p-2 mb-3">
+              <h5 class="text-paragraph">マオリ語継承のキーマンに聞いた</h5>
+              <a href="#" class="nav-link p-0 text-paragraph h5 mb-0">www.nhk.or.jp</a>
+            </div>
+            <div class="border-left-5 border-color p-2 mb-3">
+              <h5 class="text-paragraph mb-0">2004年に同法人を立ち上げ、地域の食文化の継承や食育活動に
+                取り組んでいる</h5>
+              <a href="#" class="nav-link p-0 text-paragraph h5 mb-0"> www.asahi.com</a>
+            </div>
+            <div class="border-left-5 border-color p-2 mb-2">
+              <h5 class="text-paragraph mb-0">君主制をとっている国では、継承をめぐる紛争を防ぐため、
+                継承法を明確に定めていることが多い。しかし、歴史上は数々の
+                継承紛争が生じている。中国王朝はその最たるものであり、非常
+                に多くの事例がある。
+              </h5>
+              <a href="#" class="nav-link p-0 text-paragraph h5 mb-0 text-break">www.ja.wikipedia.org</a>
+            </div>
+          </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-lg-4 px-lg-3 px-sm-2 px-1 py-4">
+          <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
+            <a class="twitter-timeline" href="https://twitter.com/TwitterDev" data-width="100%" data-height="438">
+              Tweets by @TwitterDev
+            </a>
+          </div>
+          <div class="bg-white rounded-xl shadow-lg px-2 py-3">
+            <h2 class="text-paragraph px-3">Youtube</h2>
+            <iframe width="100%" height="10%" src="https://www.youtube.com/embed/F__P2-iVinU" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </Section>
+  <!-- Main Box End -->
+  
+  <!-- Carosel Start -->
+  <Section class="max-w-1280px mx-auto mb-4 d-lg-block d-none">
+    <div class="contain-box">
+      <div class="bg-white rounded-xl shadow-lg px-5 py-4">
+        <h2 class="text-paragraph mb-3">Images</h2>
+        <div class="carouse">
+          <div class="mx-4"><img src="./assets/keisho1.png" alt="" class="w-260px h-154px object-cover"></div>
+          <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
+          <div class="mx-4"><img src="./assets/keisho3.png" alt="" class="w-260px h-154px object-cover"></div>
+          <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
+  
+        </div>
+      </div>
+    </div>
+  </Section>
+  <!-- Carosel End -->
+  
+  <!-- Experiance Button Start-->
+  <section class="d-flex justify-content-center mb-4">
+    <button type="button"
+      class="btn bg-red rounded-xl h-50px h-3 text-white font-weight-semibold shadow-sm px-5">EXERCICES</button>
+  </section>
+  <!-- Experiance Button End-->
+  
+  

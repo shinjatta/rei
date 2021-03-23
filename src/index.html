@@ -10,6 +10,29 @@
 </head>
 <body>
   <app-root></app-root>
+    <!-- Footer Start -->
+    <footer class="bg-red p-4">
+      <div class="d-flex flex-wrap justify-content-lg-between justify-content-center">
+        <div class="pr-5 py-3">
+          <h2 class="text-white font-weight-semibold text-lg-left text-center">POWERED BY:</h2>
+          <div class="d-flex flex-wrap align-items-center justify-content-lg-start justify-content-center">
+            <img src="./assets/logo_ja.png" alt="" width="150px" height="50px" class="m-2">
+            <img src="./assets/jishologo.png" alt="" width="90px" height="50px" class="m-2">
+            <img src="./assets/NHK-Logo.png" alt="" width="120px" height="80px" class="m-2">
+            <img src="./assets/twitterdevelopersapp.png" alt="" width="55px" height="55px" class="m-2">
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="d-flex align-items-center justify-content-lg-end justify-content-center">
+            <h2 class="text-white font-weight-semibold">CONTACT:</h2>
+            <h3 class="text-white ml-3"><i class="fab fa-twitter"></i></h3>
+          </div>
+          <h5 class="text-white text-cetner px-sm-5 pb-4 border-bottom">thereiprojectmail@gmail.com</h5>
+          <h5 class="text-white text-lg-right text-center">© The Rei project 2021</h5>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer End -->
 </body>
 <script>window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
@@ -26,5 +49,45 @@
   };
 
   return t;
-}(document, "script", "twitter-wjs"));</script>
+}(document, "script", "twitter-wjs"));
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.carouse').slick({
+      slidesToShow: 3,
+      arrows: false,
+      dots: true,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2.1
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
 </html>
