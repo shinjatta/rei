@@ -8,8 +8,8 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
-  {//Cuando ponga noticias
-    path: 'search',
+   {
+    path: ':word',
     component: ResultadoBusquedaComponent,
   },
 ];

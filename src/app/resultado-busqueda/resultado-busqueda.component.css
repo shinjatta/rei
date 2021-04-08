@@ -1,5 +1,6 @@
 body {
     font-family: 'Montserrat', sans-serif;
+    
 }
 
 /* ==== Colors === */
@@ -66,6 +67,10 @@ body {
 
 .font-weight-semibold {
     font-weight: 600;
+}
+
+.font-weight-normal{
+    font-weight: 400;
 }
 
 /* Logo Size */
