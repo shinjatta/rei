@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as puppeteer from 'puppeteer';
 /* import * as translate from 'node-google-translate-skidz-master'; */
 /* import * as translate from 'node-google-translate-skidz'; */
 @Component({
@@ -41,7 +42,12 @@ export class ResultadoBusquedaComponent implements OnInit {
     this._router.navigate(['', this.search]);
   }
 
+
   transformToAscii(){
+    
+  }
+
+  buscaExemplesNHK(){
     
   }
   

@@ -1,9 +1,9 @@
-// @ts-check
+// @ts-nocheck
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
 const { SpecReporter, StacktraceOption } = require('jasmine-spec-reporter');
-
+const puppeteer = require('puppeteer');
 /**
  * @type { import("protractor").Config }
  */
@@ -13,7 +13,11 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--headless'],
+      binary: puppeteer.executablePath(),
+    }
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
