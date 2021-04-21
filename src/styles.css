@@ -69,6 +69,14 @@ body {
     font-weight: 600;
 }
 
+#mail{
+    text-decoration: none; 
+    color: white;
+}
+#mail:hover{
+    text-decoration: underline;
+}
+
 /* Logo Size */
 
 .logo {

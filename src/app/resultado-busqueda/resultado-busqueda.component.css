@@ -54,6 +54,11 @@ body {
 .max-w-1280px {
     max-width: 1280px;
 }
+/* Button */
+
+.ml-2{
+    font-size: x-large;
+}
 
 /* Margin */
 
@@ -71,6 +76,16 @@ body {
 
 .font-weight-normal{
     font-weight: 400;
+}
+
+h5{
+    font-weight: 100;
+}
+
+.nav-link{
+    font-weight: 100;
+    text-decoration: underline;
+    text-decoration-thickness: 5%;
 }
 
 /* Logo Size */

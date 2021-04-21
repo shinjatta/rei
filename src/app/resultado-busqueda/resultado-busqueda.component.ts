@@ -41,14 +41,28 @@ export class ResultadoBusquedaComponent implements OnInit {
   buscar(){
     this._router.navigate(['', this.search]);
   }
+/* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
+/* NO FUNCIONA */
+  decideQueFraseMostrar(frases:Array<any>){
+  frases.forEach(frase=> {
+  if(frase.indexOf(this.search)!=-1){
+    return frase
+   }
+   });
+   }
 
-
-  transformToAscii(){
-    
-  }
-
+  /* Se conecta a la api que consigue frases de la web nhk de noticias y devuelve frases */
   buscaExemplesNHK(){
-    
+    this.palabraPrincipal=this.search;
+    this.data.getFrasesNHK(this.palabraPrincipal)
+    .subscribe(
+      (result:any) => {
+      console.log(result);
+      },
+      (error) => {
+       console.log(error);
+      }
+    );
   }
   
   ngOnInit() {
@@ -56,7 +70,9 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.search = params['word'];
       this.traducir();
+      this.buscaExemplesNHK();
     });
+
     /* var translate = require('node-google-translate-skidz'); */
 
    /*  translate({

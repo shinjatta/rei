@@ -26,6 +26,17 @@ export class DataService {
     );
   }
 
+  /* BUSCADOR DE EJEMPLOS */
+  /* Nhk: Lloc de noticies */
+  private API_NHK = "http://localhost:3000/frases/nhk/";
+
+  public getFrasesNHK(paraula:string)
+  {
+    return this.httpClient.get(
+      this.API_NHK+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
+    );
+  }
+  
 
   private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";
 
