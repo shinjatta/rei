@@ -17,6 +17,8 @@ export class ResultadoBusquedaComponent implements OnInit {
   lectura="";
   traduccionIngles="";
   traduccionEspañol="herencia, sucesión";
+  fraseNHKtitle=""
+  fraseNHKlink="";
 
   constructor(private data: DataService, 
     private _router: Router,
@@ -44,11 +46,14 @@ export class ResultadoBusquedaComponent implements OnInit {
 /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
 /* NO FUNCIONA */
   decideQueFraseMostrar(frases:Array<any>){
-  frases.forEach(frase=> {
-  if(frase.indexOf(this.search)!=-1){
-    return frase
-   }
-   });
+    let ambParaula=frases.filter(frase=> {
+      return(frase.title.includes(this.search));
+    })
+    if(ambParaula.length>0){
+      return ambParaula[0].title;
+    }else{
+      return null;
+    }
    }
 
   /* Se conecta a la api que consigue frases de la web nhk de noticias y devuelve frases */
@@ -57,7 +62,8 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.data.getFrasesNHK(this.palabraPrincipal)
     .subscribe(
       (result:any) => {
-      console.log(result);
+        this.fraseNHKtitle=this.decideQueFraseMostrar(result);
+        console.log(this.fraseNHKtitle);
       },
       (error) => {
        console.log(error);
