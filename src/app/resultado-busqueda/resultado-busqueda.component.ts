@@ -16,7 +16,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   palabraPrincipal="";
   lectura="";
   traduccionIngles="";
-  traduccionEspañol="herencia, sucesión";
+  traduccionEspanol="";
   /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
@@ -29,7 +29,7 @@ export class ResultadoBusquedaComponent implements OnInit {
     private route: ActivatedRoute,) { }
 
   /* Aquesta funció recull la paraula que s'ha passat i la tradueix al anglés amb l'ajuda dela api de jisho */
-  traducir(){
+  traducirIngles(){
     this.palabraPrincipal=this.search;
     this.data.getMeaning(this.palabraPrincipal)
     .subscribe(
@@ -43,6 +43,19 @@ export class ResultadoBusquedaComponent implements OnInit {
     );
   }
 
+  /* Aquest funcio fa una busqueda al traductor de google i consegueix la traduccio al castella */
+  traducirEspanol(){
+    this.palabraPrincipal=this.search;
+    this.data.getSpanish(this.palabraPrincipal)
+    .subscribe(
+      (result:any) => {
+        this.traduccionEspanol=result.toUpperCase();
+      },
+      (error) => {
+       console.log(error);
+      }
+    );
+  }
   /* Funcio que fa que recarregui la pagina amb la nova paraula que s'ha buscat passant la paraula buscada per la ruta */
   /* S'executa cada vegada que es pica el boto de buscar */
   buscar(){
@@ -144,7 +157,8 @@ export class ResultadoBusquedaComponent implements OnInit {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
     this.route.params.subscribe(params => {
       this.search = params['word'];
-      this.traducir();
+      this.traducirIngles();
+      this.traducirEspanol();
       this.tamanyoPalabras();
       this.buscaExemplesYahoo();
       this.buscaExemplesNHK();

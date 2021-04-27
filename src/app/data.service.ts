@@ -47,14 +47,23 @@ export class DataService {
     );
   }
   
+  /* Para conseguir traducción al español */
+  private API_Spanish = "http://localhost:3000/traduccion/spanish/";
 
-  private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";
+  public getSpanish(paraula:string)
+  {
+    return this.httpClient.get(
+      this.API_Spanish+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
+    );
+  }
+
+  /* private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";
 
   public getSpanish(paraula:string)
   {
     return this.httpClient.get(
       this.MICROSOFT_API+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
     );
-  }
+  } */
 
 }
