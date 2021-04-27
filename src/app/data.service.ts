@@ -36,6 +36,16 @@ export class DataService {
       this.API_NHK+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
     );
   }
+
+  /* Yahoo: Lloc de noticies */
+  private API_Yahoo = "http://localhost:3000/frases/yahoo/";
+
+  public getFrasesYahoo(paraula:string)
+  {
+    return this.httpClient.get(
+      this.API_Yahoo+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
+    );
+  }
   
 
   private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";

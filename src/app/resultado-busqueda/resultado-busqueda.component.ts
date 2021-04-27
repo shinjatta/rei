@@ -17,8 +17,12 @@ export class ResultadoBusquedaComponent implements OnInit {
   lectura="";
   traduccionIngles="";
   traduccionEspañol="herencia, sucesión";
+  /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
+  /* Yahoo */
+  fraseYahootitle=""
+  fraseYahoolink="";
 
   constructor(private data: DataService, 
     private _router: Router,
@@ -48,10 +52,22 @@ export class ResultadoBusquedaComponent implements OnInit {
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
   decideQueFraseMostrar(frases:Array<any>){
     let ambParaula=frases.filter(frase=> {
-      return(frase.title.includes(this.search));
+      return(frase.text.includes(this.search));
     })
     if(ambParaula.length>0){
-      return ambParaula[0].title;
+      return ambParaula[0].text;
+    }else{
+      return null;
+    }
+   }
+
+   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
+   decideLinkQueMostrar(frases:Array<any>){
+    let ambParaula=frases.filter(frase=> {
+      return(frase.text.includes(this.search));
+    })
+    if(ambParaula.length>0){
+      return ambParaula[0].link;
     }else{
       return null;
     }
@@ -64,7 +80,24 @@ export class ResultadoBusquedaComponent implements OnInit {
     .subscribe(
       (result:any) => {
         this.fraseNHKtitle=this.decideQueFraseMostrar(result);
-        console.log(this.fraseNHKtitle);
+        this.fraseNHKlink=this.decideLinkQueMostrar(result);
+      },
+      (error) => {
+       console.log(error);
+      }
+    );
+  }
+
+  /* Se conecta a la api que consigue frases de la web Yahoo de noticias y devuelve frases */
+  buscaExemplesYahoo(){
+    this.palabraPrincipal=this.search;
+    this.data.getFrasesYahoo(this.palabraPrincipal)
+    .subscribe(
+      (result:any) => {
+        console.log(result);
+        this.fraseYahootitle=this.decideQueFraseMostrar(result);
+        this.fraseYahoolink=this.decideLinkQueMostrar(result);
+        
       },
       (error) => {
        console.log(error);
@@ -113,6 +146,7 @@ export class ResultadoBusquedaComponent implements OnInit {
       this.search = params['word'];
       this.traducir();
       this.tamanyoPalabras();
+      this.buscaExemplesYahoo();
       this.buscaExemplesNHK();
       
     });
