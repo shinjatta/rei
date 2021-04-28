@@ -48,13 +48,23 @@ export class DataService {
   }
   
   /* Para conseguir traducción al español */
-  private API_Spanish = "http://localhost:3000/traduccion/spanish/";
+  private API_SPANISH = "http://localhost:3000/traduccion/spanish/";
 
   public getSpanish(paraula:string)
   {
     return this.httpClient.get(
-      this.API_Spanish+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
+      this.API_SPANISH+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
     );
+  }
+
+  /* Unsplash */
+  private API_UNSPLASH = "https://api.unsplash.com/search/photos?query=";
+  private CLIENT_ID ="&client_id=BH24Vtg87EprdXU2fIZVJA1mRPwsOzYack5WUgNHLUg";
+  public getPhotos(paraula:string)
+  {
+    return this.httpClient.get(
+      this.API_UNSPLASH+paraula+this.CLIENT_ID, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
+    ); 
   }
 
   /* private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";

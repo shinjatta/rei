@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as puppeteer from 'puppeteer';
+import { NgxSpinnerService} from 'ngx-spinner';
+import { LoaderService } from '../loader/loader.service';
 /* import * as translate from 'node-google-translate-skidz-master'; */
 /* import * as translate from 'node-google-translate-skidz'; */
 @Component({
@@ -17,6 +18,10 @@ export class ResultadoBusquedaComponent implements OnInit {
   lectura="";
   traduccionIngles="";
   traduccionEspanol="";
+  cargando=true;
+  imagen1="";
+  imagen2="";
+  imagen3="";
   /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
@@ -26,7 +31,24 @@ export class ResultadoBusquedaComponent implements OnInit {
 
   constructor(private data: DataService, 
     private _router: Router,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute,
+    public loaderService: LoaderService,
+    private spinner: NgxSpinnerService,) { }
+
+    /* Busca imagenes */
+  buscaUnsplash(paraula: string){
+    this.data.getPhotos(paraula)
+     .subscribe(
+       (result:any) => {
+         this.imagen1=result["results"]["0"]["urls"]["regular"];
+         this.imagen2=result["results"]["1"]["urls"]["regular"];
+         this.imagen3=result["results"]["2"]["urls"]["regular"];
+       },
+       (error) => {
+        console.log(error);
+       }
+     );
+   }
 
   /* Aquesta funció recull la paraula que s'ha passat i la tradueix al anglés amb l'ajuda dela api de jisho */
   traducirIngles(){
@@ -36,11 +58,13 @@ export class ResultadoBusquedaComponent implements OnInit {
       (result:any) => {
         this.lectura=result["0"]["japanese"]["0"]["reading"];
         this.traduccionIngles=result["0"]["senses"]["0"]["english_definitions"]["0"].toUpperCase();
+        this.buscaUnsplash(this.traduccionIngles);
       },
       (error) => {
        console.log(error);
       }
     );
+    
   }
 
   /* Aquest funcio fa una busqueda al traductor de google i consegueix la traduccio al castella */
@@ -60,6 +84,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   /* S'executa cada vegada que es pica el boto de buscar */
   buscar(){
     this._router.navigate(['', this.search]);
+    this.cargando=true;
   }
 
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
@@ -153,16 +178,19 @@ export class ResultadoBusquedaComponent implements OnInit {
     }
   }
   
+
   ngOnInit() {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
     this.route.params.subscribe(params => {
+    setTimeout(() => {
+      this.cargando=false;
+    }, 16000);
       this.search = params['word'];
       this.traducirIngles();
-      this.traducirEspanol();
       this.tamanyoPalabras();
+      this.traducirEspanol();
       this.buscaExemplesYahoo();
-      this.buscaExemplesNHK();
-      
+      this.buscaExemplesNHK();  
     });
    
     /* var translate = require('node-google-translate-skidz'); */
