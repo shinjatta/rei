@@ -1,7 +1,8 @@
 CREATE DATABASE Rei CHARACTER SET UTF8mb4 COLLATE utf8mb4_bin;
 CREATE TABLE Search
-(word VARCHAR(255) NOT NULL PRIMARY KEY, 
-search_date date
+(idSearch INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+word VARCHAR(255) NOT NULL 
+search_date DATETIME NOT NULL
 );
 
 CREATE TABLE Word
@@ -9,10 +10,20 @@ CREATE TABLE Word
 word VARCHAR(255) NOT NULL,
 times_Searched INT,
 word_Type VARCHAR(255),
-CONSTRAINT FK_Word FOREIGN KEY (word) REFERENCES Search (word)
+example1 VARCHAR (255),
+example1link VARCHAR (255),
+example2 VARCHAR (255),
+example2link VARCHAR (255),
+image1 VARCHAR (255),
+image2 VARCHAR (255),
+image3 VARCHAR (255),
+video VARCHAR (255),
+english VARCHAR (255),
+spanish VARCHAR(255)
 );
 
-CREATE TABLE Resource
+
+/* CREATE TABLE Resource
 (idResource INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 link TEXT
 );
@@ -22,4 +33,4 @@ CREATE TABLE Examples
 idResource INT NOT NULL,
 sentence TEXT,
 CONSTRAINT FK_Resource FOREIGN KEY (idResource) REFERENCES Resource (idResource)
-)
+) */

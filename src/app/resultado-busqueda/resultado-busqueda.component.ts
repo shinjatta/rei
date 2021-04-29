@@ -4,8 +4,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService} from 'ngx-spinner';
 import { LoaderService } from '../loader/loader.service';
-/* import * as translate from 'node-google-translate-skidz-master'; */
-/* import * as translate from 'node-google-translate-skidz'; */
+declare const YG: any;
 @Component({
   selector: 'app-resultado-busqueda',
   templateUrl: './resultado-busqueda.component.html',
@@ -22,6 +21,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   imagen1="";
   imagen2="";
   imagen3="";
+  
   /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
@@ -178,6 +178,32 @@ export class ResultadoBusquedaComponent implements OnInit {
     }
   }
   
+  /* Buscador de videos con un widget */
+  onYouglishAPIReady() {
+    this.palabraPrincipal=this.search;
+    let youglish_widget = new YG.Widget("youglish_widget", {
+      width: 640,
+      components: 9, //search box & caption 
+      events: {
+        'onFetchDone': function (e:any) {
+          if (e.totalResult === 0) alert("No result found");
+          else totalTracks = e.totalResult;
+        },
+        'onVideoChange': function (e:any) {
+          curTrack = e.trackNumber;    views = 0;
+        },
+        'onCaptionConsumed': function (e:any) {
+          if (++views < 3) { youglish_widget.replay();     }
+          else {
+            if (curTrack < totalTracks){  youglish_widget.next(); }
+          }
+        }
+      }
+    });
+    // 4. process the query
+    youglish_widget.fetch(this.palabraPrincipal, "japanese");　//Aqui es donde pongo que se busque la palabra que estemos buscando
+    let views = 0, curTrack = 0, totalTracks = 0;
+  }
 
   ngOnInit() {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
@@ -191,6 +217,7 @@ export class ResultadoBusquedaComponent implements OnInit {
       this.traducirEspanol();
       this.buscaExemplesYahoo();
       this.buscaExemplesNHK();  
+      this.onYouglishAPIReady();
     });
    
     /* var translate = require('node-google-translate-skidz'); */
