@@ -16,3 +16,8 @@ li a:hover{
     text-decoration: underline;
     text-decoration-thickness: 5%;
 }
+
+/* Button */
+.ml-2{
+    font-size: x-large;
+}

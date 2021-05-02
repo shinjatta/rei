@@ -1,0 +1,25 @@
+<!-- Nav Bar Start -->
+<section class="max-w-1280px mx-auto px-4">
+    <nav class="d-flex justify-content-md-start justify-content-center py-4">
+      <a href="#">
+        <img src="./assets/logo.png" alt="" class="logo">
+      </a>
+    </nav>
+  </section>
+  <!-- Nav Bar End -->
+
+<!-- Search Bar Start -->
+<Section class="max-w-1280px mx-auto mb-3 -mt-64px">
+    <div class="contain-box">
+      <form class="row no-gutters">
+        <div class="col-lg-8 col-md-7 col-8 px-lg-3 px-sm-2 px-1">
+          <input [(ngModel)]="search" class="form-control bg-white rounded-lg shadow border-0 w-100 h-50px px-4 mr-lg-4 mr-2" type="text"
+          placeholder="Enter the word you want to search" name="search" id="inputSearch">
+        </div>
+        <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
+          <button type="button"
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
+            <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
+          </button>
+    </div>
+  <!-- Search Bar End -->

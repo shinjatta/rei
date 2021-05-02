@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-error',
+  templateUrl: './error.component.html',
+  styleUrls: ['./error.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ErrorComponent implements OnInit {
   search:string="";
   
   constructor(private _router: Router,
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   buscar(){
     this._router.navigate(['search/', this.search]);
   }
+
   ngOnInit(): void {
   }
 

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService} from 'ngx-spinner';
-import { LoaderService } from '../loader/loader.service';
 declare const YG: any;
 @Component({
   selector: 'app-resultado-busqueda',
@@ -31,9 +29,7 @@ export class ResultadoBusquedaComponent implements OnInit {
 
   constructor(private data: DataService, 
     private _router: Router,
-    private route: ActivatedRoute,
-    public loaderService: LoaderService,
-    private spinner: NgxSpinnerService,) { }
+    private route: ActivatedRoute) { }
 
     /* Busca imagenes */
   buscaUnsplash(paraula: string){
@@ -80,12 +76,31 @@ export class ResultadoBusquedaComponent implements OnInit {
       }
     );
   }
+
+  /* Funcion para comprobar si tiene letras una palabra */
+  tiene_letras(texto: string){
+    var letras="abcdefghyjklmnñopqrstuvwxyz";
+    texto = texto.toLowerCase();
+    for(let i=0; i<texto.length; i++){
+       if (letras.indexOf(texto.charAt(i),0)!=-1){
+          return 1;
+       }
+    }
+    return 0;
+ }
   /* Funcio que fa que recarregui la pagina amb la nova paraula que s'ha buscat passant la paraula buscada per la ruta */
   /* S'executa cada vegada que es pica el boto de buscar */
   buscar(){
-    this._router.navigate(['', this.search]);
+    //Porque no va :(
+    if(this.tiene_letras(this.search)){
+      console.log("tiene letras");
+      /* this._router.navigate(['error']); */
+    }
+    console.log((this.tiene_letras(this.search)));
+    this._router.navigate(['search/', this.search]);
     this.cargando=true;
   }
+
 
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
   decideQueFraseMostrar(frases:Array<any>){
@@ -205,6 +220,11 @@ export class ResultadoBusquedaComponent implements OnInit {
     let views = 0, curTrack = 0, totalTracks = 0;
   }
 
+  /* Funcion para que si busca palabras que no existen se vaya a la pagina de error */
+  buscaError(){
+    this._router.navigate(['error']);
+  }
+
   ngOnInit() {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
     this.route.params.subscribe(params => {
@@ -219,16 +239,6 @@ export class ResultadoBusquedaComponent implements OnInit {
       this.buscaExemplesNHK();  
       this.onYouglishAPIReady();
     });
-   
-    /* var translate = require('node-google-translate-skidz'); */
-
-   /*  translate({
-      text: this.traduccionIngles,
-      source: 'en',
-      target: 'es'
-    }, function(result: any) {
-      console.log(result);
-    });  */
   }
 
 

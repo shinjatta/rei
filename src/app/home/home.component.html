@@ -18,10 +18,9 @@
         </div>
         <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
           <button type="button"
-            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()><span
-              class=" bg-red2 w-36px h-36px d-flex align-items-center justify-content-center rounded"></span>
-            <span class="ml-2 d-sm-block d-none"><i
-                class="fas fa-search"></i> SEARCH</span></button>
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
+            <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
+          </button>
     </div>
   <!-- Search Bar End -->
   
@@ -31,7 +30,9 @@
       <div class="row no-gutters">
         <div class="col-lg-8 px-lg-3 px-sm-2 px-1 py-4">
           <div class="bg-white rounded-xl shadow-lg px-5 py-4 mb-4">
+            <a [routerLink]="['search/瞳孔']"> 
             <div class="row align-items-center">
+              
               <div class="col-xl-6">
                 <h1 class="display-1 text-paragraph font-weight-normal text-center">瞳孔</h1>
                 <h2 class="text-paragraph text-center">どうこう</h2>
@@ -44,6 +45,7 @@
                 </h2>
               </div>
             </div>
+          </a>
           </div>
         
         </div>
@@ -52,16 +54,16 @@
             <h2 class="text-paragraph mb-3 ml-3 mt-4 nombreRanking">Ranking</h2>
             <h5 class="text-paragraph mb-0 lista_palabras">
                <ol>
-                 <li> <a [routerLink]="['/継承']"> 継承</a></li>
-                 <li> <a [routerLink]="['/支配']"> 支配</a> </li>
-                 <li> <a [routerLink]="['/食べる']"> 食べる</a> </li>
-                 <li> <a [routerLink]="['/しっとり']"> しっとり</a> </li>
-                 <li> <a [routerLink]="['/染み込む']"> 染み込む</a> </li>
-                 <li> <a [routerLink]="['/誘惑']"> 誘惑</a> </li>
-                 <li> <a [routerLink]="['/分配']"> 分配</a> </li>
-                 <li> <a [routerLink]="['/均等']"> 均等</a> </li>
-                 <li> <a [routerLink]="['/先入観']"> 先入観</a> </li>
-                 <li> <a [routerLink]="['/切ない']"> 切ない</a> </li>
+                 <li> <a [routerLink]="['search/継承']"> 継承</a></li>
+                 <li> <a [routerLink]="['search/支配']"> 支配</a> </li>
+                 <li> <a [routerLink]="['search/食べる']"> 食べる</a> </li>
+                 <li> <a [routerLink]="['search/しっとり']"> しっとり</a> </li>
+                 <li> <a [routerLink]="['search/染み込む']"> 染み込む</a> </li>
+                 <li> <a [routerLink]="['search/誘惑']"> 誘惑</a> </li>
+                 <li> <a [routerLink]="['search/分配']"> 分配</a> </li>
+                 <li> <a [routerLink]="['search/均等']"> 均等</a> </li>
+                 <li> <a [routerLink]="['search/先入観']"> 先入観</a> </li>
+                 <li> <a [routerLink]="['search/切ない']"> 切ない</a> </li>
                </ol>
               </h5>
           </div>

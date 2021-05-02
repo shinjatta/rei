@@ -18,10 +18,9 @@
         </div>
         <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
           <button type="button"
-            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()><!-- <span
-              class=" bg-red2 w-36px h-36px d-flex align-items-center justify-content-center rounded"></span> -->
-            <span class="ml-2 d-sm-block d-none"><i
-                class="fas fa-search"></i> SEARCH</span></button>
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
+            <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
+          </button>
     </div>
   <!-- Search Bar End -->
   
@@ -47,10 +46,9 @@
           <div class="bg-white rounded-xl shadow-lg px-5 py-4 d-lg-none d-block mb-4">
             <h2 class="text-paragraph mb-3">Images</h2>
             <div class="carouse w-full">
-              <div class="mx-4"><img src="./assets/keisho1.png" alt="" class="w-260px h-154px object-cover"></div>
-              <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
-              <div class="mx-4"><img src="./assets/keisho3.png" alt="" class="w-260px h-154px object-cover"></div>
-              <div class="mx-4"><img src="./assets/keisho2.png" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="{{imagen1}}" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="{{imagen2}}" alt="" class="w-260px h-154px object-cover"></div>
+              <div class="mx-4"><img src="{{imagen3}}" alt="" class="w-260px h-154px object-cover"></div>
             </div>
           </div>
           <div class="bg-white rounded-xl shadow-lg px-5 py-4 " style="position: relative; height: 330px; overflow-y: scroll;">
@@ -61,7 +59,7 @@
              <div *ngIf="cargando==false">
               <div class="border-left-5 border-color p-2 mb-3">
                 <h5 class="text-paragraph">{{fraseNHKtitle}}</h5>
-                <a href="{{fraseNHKlink}}" class="nav-link p-0 text-paragraph h5 mb-0">www.nhk.or.jp</a>
+                <a target="_blank" rel="noopener noreferrer" href="{{fraseNHKlink}}" class="nav-link p-0 text-paragraph h5 mb-0">www.nhk.or.jp</a>
               </div>
               <!-- <div class="border-left-5 border-color p-2 mb-3">
                 <h5 class="text-paragraph mb-0">2004年に同法人を立ち上げ、地域の食文化の継承や食育活動に
@@ -70,7 +68,7 @@
               </div> -->
               <div class="border-left-5 border-color p-2 mb-2">
                 <h5 class="text-paragraph mb-0">{{fraseYahootitle}}</h5>
-                <a href="{{fraseYahoolink}}" class="nav-link p-0 text-paragraph h5 mb-0 text-break">www.news.yahoo.co.jp</a>
+                <a target="_blank" rel="noopener noreferrer" href="{{fraseYahoolink}}" class="nav-link p-0 text-paragraph h5 mb-0 text-break">www.news.yahoo.co.jp</a>
               </div>
              </div>
            </div>
@@ -108,8 +106,8 @@
   
   <!-- Exercices Button Start-->
   <section class="d-flex justify-content-center mb-4">
-    <button type="button"
-      class="btn bg-red rounded-xl h-50px h-3 text-white font-weight-semibold shadow-sm px-5 " style="margin-left: 360px; font-size: x-large; ">EXERCICES</button>
+    <a 
+      class="btn bg-red rounded-xl h-50px h-3 text-white font-weight-semibold shadow-sm px-5 " style="margin-left: 360px; font-size: x-large; " [routerLink]="['exercices/usage/継承']">EXERCICES</a>
   </section>
   <!-- Exercices Button End-->
   
