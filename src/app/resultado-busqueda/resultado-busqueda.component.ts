@@ -19,6 +19,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   imagen1="";
   imagen2="";
   imagen3="";
+  jlpt="N0";
   
   /* NHK */
   fraseNHKtitle=""
@@ -52,8 +53,35 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.data.getMeaning(this.palabraPrincipal)
     .subscribe(
       (result:any) => {
+        console.log(result);
         this.lectura=result["0"]["japanese"]["0"]["reading"];
         this.traduccionIngles=result["0"]["senses"]["0"]["english_definitions"]["0"].toUpperCase();
+        //Calcula quin nivell del JLPT correspon
+        switch(result["0"]["jlpt"]["0"]){
+          case "jlpt-n5":
+            this.jlpt="N5";
+            console.log("N5");
+            break;
+          case "jlpt-n4":
+            this.jlpt="N4";
+            console.log("N4");
+            break;
+          case "jlpt-n3":
+            this.jlpt="N3";
+            console.log("N3");
+              break;
+          case "jlpt-n2":
+            this.jlpt="N2";
+            console.log("N2");
+              break;
+          case "jlpt-n1":
+            this.jlpt="N1";
+            console.log("N1");
+              break;
+          default:
+            console.log("no entro uwu");
+              break;
+        }
         this.buscaUnsplash(this.traduccionIngles);
       },
       (error) => {
@@ -98,6 +126,10 @@ export class ResultadoBusquedaComponent implements OnInit {
     }
     this._router.navigate(['search/', this.search]);
     this.cargando=true;
+  }
+  /* Funcio que posa play al audio que s'indica */
+  playAudio(url: string | undefined) {
+    new Audio(url).play();
   }
 
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
