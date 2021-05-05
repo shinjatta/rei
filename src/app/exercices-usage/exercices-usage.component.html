@@ -23,3 +23,68 @@
           </button>
     </div>
   <!-- Search Bar End -->
+
+  <!-- Bottons Start -->
+  <div>
+    <ul style="list-style: none;" >
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/context/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+        文脈規定<br>
+        Context
+        </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/usage/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; background-color: #E16C66; ">
+          用法<br>
+          Usage
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/images/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+          画像選択<br>
+          Images
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/listening/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px;">
+          聴解<br>
+          Listening
+          </a>
+      </li>
+      <li style="float: left;">
+        <a [routerLink]="['/exercices/kanji/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px;">
+          漢字読み<br>
+          Kanji reading
+          </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Bottons End -->
+  <!-- Exercices Start -->
+  <div style="padding: 7%; padding-left: 17%;">
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">使い方として最も良いものはどっち?</h1>
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">Where is correctly used {{palabraPrincipal}}？</h1>
+  </div>
+  <ul style="list-style: none; margin-left: 30%;" >
+    <li  >
+      <p class="form-control bg-white rounded-lg shadow border-0 w-160 h-50px px-4 mr-lg-4 mr-2" style="text-align: center; padding-top: 13px; padding-left: 75px; padding-right: 75px;">
+        マオリ語継承のキーマンに聞いた
+      </p>
+    </li>
+    <li  >
+      <p  class="form-control bg-white rounded-lg shadow border-0 w-160 h-50px px-4 mr-lg-4 mr-2" style="text-align: center; padding-top: 13px; padding-left: 75px; padding-right: 75px;" >
+        継承をとっている国
+      </p>
+    </li>
+    <li  >
+      <p  class="form-control bg-white rounded-lg shadow border-0 w-160 h-50px px-4 mr-lg-4 mr-2" style="text-align: center; padding-top: 13px; padding-left: 75px; padding-right: 75px;">
+        2004年に同法人を立ち上げ
+      </p>
+    </li>
+    <li  >
+      <p  class="form-control bg-white rounded-lg shadow border-0 w-160 h-50px px-4 mr-lg-4 mr-2" style="text-align: center; padding-top: 13px; padding-left: 75px; padding-right: 75px;">
+        非常に多くの事例がある
+      </p>
+    </li>
+  </ul>
+  <!-- Exercices End -->

@@ -8,6 +8,11 @@
     margin-left: 20px;
 }
 
+.bg-white a:hover{
+    text-decoration: underline;
+    text-decoration-color: #707070;
+}
+
 li a{
     color: #707070;
 }

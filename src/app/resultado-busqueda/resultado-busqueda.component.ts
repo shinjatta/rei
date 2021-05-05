@@ -94,13 +94,11 @@ export class ResultadoBusquedaComponent implements OnInit {
     //Porque no va :(
     if(this.tiene_letras(this.search)){
       console.log("tiene letras");
-      /* this._router.navigate(['error']); */
+      this._router.navigate(['/error']);
     }
-    console.log((this.tiene_letras(this.search)));
     this._router.navigate(['search/', this.search]);
     this.cargando=true;
   }
-
 
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
   decideQueFraseMostrar(frases:Array<any>){

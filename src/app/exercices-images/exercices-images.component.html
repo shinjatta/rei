@@ -23,3 +23,51 @@
           </button>
     </div>
   <!-- Search Bar End -->
+ 
+  <!-- Bottons Start -->
+  <div>
+    <ul style="list-style: none;" >
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/context', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+        文脈規定<br>
+        Context
+        </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/usage/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+          用法<br>
+          Usage
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/images/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; background-color: #E16C66;">
+          画像選択<br>
+          Images
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/listening/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px;">
+          聴解<br>
+          Listening
+          </a>
+      </li>
+      <li style="float: left;">
+        <a [routerLink]="['/exercices/kanji/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px;">
+          漢字読み<br>
+          Kanji reading
+          </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Bottons End -->
+   <!-- Exercices Start -->
+   <div style="padding: 7%; padding-left: 28%;">
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">{{palabraPrincipal}}ということは何？?</h1>
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">What is {{palabraPrincipal}}？</h1>
+  </div>
+  <div class="carouse w-full" style="display: -webkit-inline-box;">
+    <div class="mx-4"><img src="{{imagen1}}" alt="" class="w-260px h-154px object-cover"  style="display: inline-block;"></div>
+    <div class="mx-4"><img src="{{imagen2}}" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
+    <div class="mx-4"><img src="{{imagen3}}" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
+  </div>
+  <!-- Exercices End -->

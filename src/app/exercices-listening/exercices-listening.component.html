@@ -21,5 +21,59 @@
             class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
             <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
           </button>
-    </div>
+        </div>
+      </form>
   <!-- Search Bar End -->
+
+  <!-- Bottons Start -->
+  <div>
+    <ul style="list-style: none;" >
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/context/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+        文脈規定<br>
+        Context
+        </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/usage/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+          用法<br>
+          Usage
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/images/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; ">
+          画像選択<br>
+          Images
+          </a>
+      </li>
+      <li  style="float: left;">
+        <a [routerLink]="['/exercices/listening/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px; background-color: #E16C66;">
+          聴解<br>
+          Listening
+          </a>
+      </li>
+      <li style="float: left;">
+        <a [routerLink]="['/exercices/kanji/', search]" class="my-4 mx-1 btn bg-red rounded-xl h-100px h-3 text-white font-weight-light shadow-sm px-1 boton-ejercicios" style="margin-left: 360px; font-size: x-large; width: 170px;">
+          漢字読み<br>
+          Kanji reading
+          </a>
+      </li>
+    </ul>
+  </div>
+  <!-- Bottons End -->
+  <!-- Exercices Start -->
+  <div style="padding: 7%; padding-left: 17%;">
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">何が言われましたか?</h1>
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">What did they say?</h1>
+  </div>
+  <div id="youglish_widget"></div>
+  <form class="row no-gutters">
+    <div class="col-lg-8 col-md-7 col-8 px-lg-3 px-sm-2 px-1">
+      <input [(ngModel)]="answer" class="form-control bg-white rounded-lg shadow border-0 w-100 h-50px px-4 mr-lg-4 mr-2" type="text"
+      placeholder="Type it here..." name="answer" id="inputAnswer">
+    </div>
+    <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1" style="display: none;">
+      <div class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" >
+    </div>
+    </div>
+  </form>

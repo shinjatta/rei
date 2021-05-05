@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ExercicesUsageComponent implements OnInit {
   search:string="";
-  
+  palabraPrincipal="";
   constructor(private _router: Router,
     private route: ActivatedRoute,) { }
 
@@ -17,6 +17,10 @@ export class ExercicesUsageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.search = params['word'];
+      this.palabraPrincipal=this.search;
+    });
   }
 
 }
