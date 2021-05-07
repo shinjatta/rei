@@ -67,13 +67,5 @@ export class DataService {
     ); 
   }
 
-  /* private MICROSOFT_API = "https://kanji-cors-bypass.herokuapp.com/api/";
-
-  public getSpanish(paraula:string)
-  {
-    return this.httpClient.get(
-      this.MICROSOFT_API+paraula, { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) }
-    );
-  } */
 
 }

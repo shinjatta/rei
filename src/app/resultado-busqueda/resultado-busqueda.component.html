@@ -18,8 +18,8 @@
         </div>
         <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
           <button type="button"
-            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
-            <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0 boto" (click)=buscar()>
+            <span class="ml-2 d-sm-block d-none "><i class="fas fa-search"></i> SEARCH</span>
           </button>
     </div>
   <!-- Search Bar End -->
@@ -38,11 +38,11 @@
               <div class="col-xl-6 text-xl-left text-center" style="padding-left: 10%;">
                 <h2 class="text-paragraph text-break mb-3" id="traduccionIngles">{{traduccionIngles}}
                 </h2>
-                <h2 class="text-paragraph text-break">{{traduccionEspanol}}
+                <h2 class="text-paragraph text-break" id="traduccionEspanol">{{traduccionEspanol}}
                 </h2>
               </div>
               <div style="display: inline-block; display: flex; flex-wrap: nowrap; flex-direction: row; text-align: right; padding-left: 83%;">
-                <h3 (click)="playAudio('../../assets/audio/〜{{palabraPrincipal}}【{{lectura}}】.mp3')"><i class="fas fa-volume-up" style="color: #707070;"></i></h3>
+                <h3 (click)="playAudio();" style="margin-right: 12px;"><i class="fas fa-volume-up" style="color: #707070;"></i></h3>
                 <h3 style=" color: #707070; padding-left: 5%;">{{jlpt}}</h3>
               </div>
               
@@ -66,7 +66,7 @@
                 <h5 class="text-paragraph mb-0">{{fraseYahootitle}}</h5>
                 <a target="_blank" rel="noopener noreferrer" href="{{fraseYahoolink}}" class="nav-link p-0 text-paragraph h5 mb-0 text-break">www.news.yahoo.co.jp</a>
               </div>
-              <div class="border-left-5 border-color p-2 mb-3">
+              <div *ngIf="mostrarNHK==true" class="border-left-5 border-color p-2 mb-3">
                 <h5 class="text-paragraph">{{fraseNHKtitle}}</h5>
                 <a target="_blank" rel="noopener noreferrer" href="{{fraseNHKlink}}" class="nav-link p-0 text-paragraph h5 mb-0">www.nhk.or.jp</a>
               </div>
@@ -96,7 +96,7 @@
   <!-- Main Box End -->
   
   <!-- Carosel Start -->
-  <Section class="max-w-1280px mx-auto mb-4 d-lg-block d-none">
+  <Section *ngIf="mostrarImagenes==true;" class="max-w-1280px mx-auto mb-4 d-lg-block d-none">
     <div class="contain-box">
       <div class="bg-white rounded-xl shadow-lg px-5 py-4" style=" width: 900px; margin-left: -156px; height: 300px; display: inline-block">
         <h2 class="text-paragraph mb-3">Images</h2>
@@ -112,7 +112,7 @@
   
   <!-- Exercices Button Start-->
   <section class="d-flex justify-content-center mb-4">
-    <a [routerLink]="['/exercices/context/', palabraPrincipal]" class="btn bg-red rounded-xl h-50px h-3 text-white font-weight-semibold shadow-sm px-5 " style="margin-left: 360px; font-size: x-large; " >EXERCICES</a>
+    <a [routerLink]="['/exercices/context/', palabraPrincipal]" class="btn bg-red rounded-xl h-50px h-3 text-white font-weight-semibold shadow-sm px-5 boto " style="margin-left: 360px; font-size: x-large; " >EXERCICES</a>
   </section>
   <!-- Exercices Button End-->
   

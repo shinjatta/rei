@@ -11,19 +11,27 @@ declare const YG: any;
 export class ResultadoBusquedaComponent implements OnInit {
   search:string="";
   subscription!: Subscription;
+  cargando=true;
+  mostrarNHK=true;
+  mostrarImagenes=true;
+  /* Info palabra */
   palabraPrincipal="";
   lectura="";
   traduccionIngles="";
   traduccionEspanol="";
-  cargando=true;
+  jlpt="N0";
+  
+
+  /* Imagenes */
   imagen1="";
   imagen2="";
   imagen3="";
-  jlpt="N0";
+
   
   /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
+
   /* Yahoo */
   fraseYahootitle=""
   fraseYahoolink="";
@@ -37,15 +45,59 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.data.getPhotos(paraula)
      .subscribe(
        (result:any) => {
-         this.imagen1=result["results"]["0"]["urls"]["regular"];
-         this.imagen2=result["results"]["1"]["urls"]["regular"];
-         this.imagen3=result["results"]["2"]["urls"]["regular"];
+         console.log(result["total"]);
+         if(result["total"]==0){
+            this.mostrarImagenes=false;
+         }else{
+          this.imagen1=result["results"]["0"]["urls"]["regular"];
+          this.imagen2=result["results"]["1"]["urls"]["regular"];
+          this.imagen3=result["results"]["2"]["urls"]["regular"];
+         }
        },
        (error) => {
         console.log(error);
        }
      );
    }
+
+   /* Controla el tamany de les paraules en angles */
+  tamanyoPalabrasIngles(paraula: string){
+    let letrasIngles=paraula.split('');
+    console.log("Traduccion ingles: " +paraula);
+    let h2palabra=document.getElementById("traduccionIngles");
+    console.log("Letras ingles: " +letrasIngles.length);
+    if(letrasIngles.length==9){
+      h2palabra?.setAttribute("style", "font-size: 30px;");
+    }else if(letrasIngles.length==10){
+      h2palabra?.setAttribute("style", "font-size: 29px;");
+    }else if(letrasIngles.length==11){
+      h2palabra?.setAttribute("style", "font-size: 25px;");
+    }else if(letrasIngles.length==12){
+      h2palabra?.setAttribute("style", "font-size: 25px;");
+    }else{
+      h2palabra?.setAttribute("style", "font-size: 32px;");
+    }
+  }
+
+   /* Controla el tamany de les paraules en castella */
+   tamanyoPalabrasEspanol(paraula: string){
+    let letrasEspanol=paraula.split('');
+    console.log("Traduccion Español: " +paraula);
+    let h2palabra=document.getElementById("traduccionEspanol");
+    console.log("Letras Español: " +letrasEspanol.length);
+
+    if(letrasEspanol.length==9){
+      h2palabra?.setAttribute("style", "font-size: 30px;");
+    }else if(letrasEspanol.length==10){
+      h2palabra?.setAttribute("style", "font-size: 29px;");
+    }else if(letrasEspanol.length==11){
+      h2palabra?.setAttribute("style", "font-size: 25px;");
+    }else if(letrasEspanol.length==12){
+      h2palabra?.setAttribute("style", "font-size: 25px;");
+    }else{
+      h2palabra?.setAttribute("style", "font-size: 32px;");
+    }
+  }
 
   /* Aquesta funció recull la paraula que s'ha passat i la tradueix al anglés amb l'ajuda dela api de jisho */
   traducirIngles(){
@@ -60,29 +112,26 @@ export class ResultadoBusquedaComponent implements OnInit {
         switch(result["0"]["jlpt"]["0"]){
           case "jlpt-n5":
             this.jlpt="N5";
-            console.log("N5");
             break;
           case "jlpt-n4":
             this.jlpt="N4";
-            console.log("N4");
             break;
           case "jlpt-n3":
             this.jlpt="N3";
-            console.log("N3");
               break;
           case "jlpt-n2":
             this.jlpt="N2";
-            console.log("N2");
               break;
           case "jlpt-n1":
             this.jlpt="N1";
-            console.log("N1");
               break;
           default:
-            console.log("no entro uwu");
               break;
         }
+        //Busca imatges
         this.buscaUnsplash(this.traduccionIngles);
+        //Cambia tamaño
+        this.tamanyoPalabrasIngles(this.traduccionIngles);
       },
       (error) => {
        console.log(error);
@@ -98,6 +147,7 @@ export class ResultadoBusquedaComponent implements OnInit {
     .subscribe(
       (result:any) => {
         this.traduccionEspanol=result.toUpperCase();
+        this.tamanyoPalabrasEspanol(this.traduccionEspanol);
       },
       (error) => {
        console.log(error);
@@ -107,7 +157,9 @@ export class ResultadoBusquedaComponent implements OnInit {
 
   /* Funcion para comprobar si tiene letras una palabra */
   tiene_letras(texto: string){
-    var letras="abcdefghyjklmnñopqrstuvwxyz";
+    var letrasMinusculas="abcdefghyjklmnñopqrstuvwxyz";
+    var letrasMinusculas=letrasMinusculas.toUpperCase();
+    var letras= letrasMinusculas+letrasMinusculas;
     texto = texto.toLowerCase();
     for(let i=0; i<texto.length; i++){
        if (letras.indexOf(texto.charAt(i),0)!=-1){
@@ -123,13 +175,23 @@ export class ResultadoBusquedaComponent implements OnInit {
     if(this.tiene_letras(this.search)){
       console.log("tiene letras");
       this._router.navigate(['/error']);
+    }else{
+      console.log("japones");
     }
     this._router.navigate(['search/', this.search]);
+    //Reinicia les variables
+    this.mostrarNHK=true;
     this.cargando=true;
+    this.mostrarImagenes=true;
+    
   }
   /* Funcio que posa play al audio que s'indica */
-  playAudio(url: string | undefined) {
-    new Audio(url).play();
+  playAudio(){
+    let audio = new Audio();
+    let link= "../../../assets/audio/"+this.palabraPrincipal+"【"+this.lectura+"】.mp3";
+    audio.src = link;
+    audio.load();
+    audio.play();
   }
 
   /* Funcion que se mira todo lo recibido y decide que frases va a mostrar (Solo 1 o ninguna) */
@@ -163,7 +225,13 @@ export class ResultadoBusquedaComponent implements OnInit {
     .subscribe(
       (result:any) => {
         this.fraseNHKtitle=this.decideQueFraseMostrar(result);
-        this.fraseNHKlink=this.decideLinkQueMostrar(result);
+        console.log(this.fraseNHKtitle);
+        if(this.fraseNHKtitle!=null){
+          this.fraseNHKlink=this.decideLinkQueMostrar(result);
+        }else{
+          this.mostrarNHK=false;
+          console.log("no hi ha nhk")
+        }
       },
       (error) => {
        console.log(error);
@@ -187,10 +255,10 @@ export class ResultadoBusquedaComponent implements OnInit {
       }
     );
   }
-  /* Controla el tamany de les paraules  */
-  tamanyoPalabras(){
+  /* Controla el tamany de les paraules en japones */
+  tamanyoPalabrasJapones(){
     let arrayCarateres=this.search.split('');
-    console.log(arrayCarateres.length);
+    console.log("Caracteres japones: "+arrayCarateres.length);
     let h1palabra=document.getElementById("palabraPrincipal");
     switch(arrayCarateres.length){
       case 1:
@@ -210,19 +278,9 @@ export class ResultadoBusquedaComponent implements OnInit {
       break;
       default:
         h1palabra?.setAttribute("style", "font-size: 39px;");
-    }
-
-    let letrasIngles=this.traduccionIngles.split('');
-    console.log(this.traduccionIngles);
-    let h2palabra=document.getElementById("traduccionIngles");
-    console.log(letrasIngles.length);
-    if(letrasIngles.length>=12){
-      h2palabra?.setAttribute("style", "font-size: 26px;");
-    }else{
-      h2palabra?.setAttribute("style", "font-size: 32px;");
-    }
+    } 
   }
-  
+
   /* Buscador de videos con un widget */
   onYouglishAPIReady() {
     this.palabraPrincipal=this.search;
@@ -263,10 +321,10 @@ export class ResultadoBusquedaComponent implements OnInit {
     }, 16000);
       this.search = params['word'];
       this.traducirIngles();
-      this.tamanyoPalabras();
+      this.tamanyoPalabrasJapones();
       this.traducirEspanol();
-      this.buscaExemplesYahoo();
       this.buscaExemplesNHK();  
+      this.buscaExemplesYahoo();
       this.onYouglishAPIReady();
     });
   }
