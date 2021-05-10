@@ -144,3 +144,10 @@ body {
     background-color: #BC2C25;
     opacity: 100%;
 }
+
+/* You Glish */
+
+.search .well.emb {
+    padding: 19px 19px 10px;
+    display: none !important;
+}

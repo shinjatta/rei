@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from "../data.service";
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatosPalabra } from '../models/datos-palabra.model';
+import { Log } from '../models/log.model';
+import { HistorialService } from '../historial.service';
 declare const YG: any;
 @Component({
   selector: 'app-resultado-busqueda',
@@ -14,6 +17,8 @@ export class ResultadoBusquedaComponent implements OnInit {
   cargando=true;
   mostrarNHK=true;
   mostrarImagenes=true;
+  cosesquequeden=5;
+  encontrada=false;
   /* Info palabra */
   palabraPrincipal="";
   lectura="";
@@ -36,9 +41,26 @@ export class ResultadoBusquedaComponent implements OnInit {
   fraseYahootitle=""
   fraseYahoolink="";
 
-  constructor(private data: DataService, 
+  PalabraInfo= new DatosPalabra;
+  Log= new Log();
+  DatosPalabra= new DatosPalabra();
+
+  constructor(private data: DataService, private historial: HistorialService,
     private _router: Router,
     private route: ActivatedRoute) { }
+
+    /* Registrar busqueda */
+  registrarBusqueda(){
+      this.historial.insertLog(this.Log)
+      .subscribe(
+        (result:any) => {
+        console.log("exito");
+        },
+        (error) => {
+        console.log(error);
+        }
+      );
+  }
 
     /* Busca imagenes */
   buscaUnsplash(paraula: string){
@@ -52,6 +74,10 @@ export class ResultadoBusquedaComponent implements OnInit {
           this.imagen1=result["results"]["0"]["urls"]["regular"];
           this.imagen2=result["results"]["1"]["urls"]["regular"];
           this.imagen3=result["results"]["2"]["urls"]["regular"];
+        }
+         this.cosesquequeden--;
+         if(this.cosesquequeden==0 && this.encontrada==false){
+           this.registrarPalabra();
          }
        },
        (error) => {
@@ -128,6 +154,10 @@ export class ResultadoBusquedaComponent implements OnInit {
           default:
               break;
         }
+        this.cosesquequeden--;
+         if(this.cosesquequeden==0 && this.encontrada==false){
+           this.registrarPalabra();
+         }
         //Busca imatges
         this.buscaUnsplash(this.traduccionIngles);
         //Cambia tamaño
@@ -137,7 +167,6 @@ export class ResultadoBusquedaComponent implements OnInit {
        console.log(error);
       }
     );
-    
   }
 
   /* Aquest funcio fa una busqueda al traductor de google i consegueix la traduccio al castella */
@@ -148,6 +177,10 @@ export class ResultadoBusquedaComponent implements OnInit {
       (result:any) => {
         this.traduccionEspanol=result.toUpperCase();
         this.tamanyoPalabrasEspanol(this.traduccionEspanol);
+        this.cosesquequeden--;
+         if(this.cosesquequeden==0 && this.encontrada==false){
+           this.registrarPalabra();
+         }
       },
       (error) => {
        console.log(error);
@@ -155,7 +188,8 @@ export class ResultadoBusquedaComponent implements OnInit {
     );
   }
 
-  /* Funcion para comprobar si tiene letras una palabra */
+  /* Funcion para comprobar si tiene letras una palabra
+  NO FUNCIONA */
   tiene_letras(texto: string){
     var letrasMinusculas="abcdefghyjklmnñopqrstuvwxyz";
     var letrasMinusculas=letrasMinusculas.toUpperCase();
@@ -167,24 +201,20 @@ export class ResultadoBusquedaComponent implements OnInit {
        }
     }
     return 0;
- }
+   }
+
   /* Funcio que fa que recarregui la pagina amb la nova paraula que s'ha buscat passant la paraula buscada per la ruta */
-  /* S'executa cada vegada que es pica el boto de buscar */
   buscar(){
-    //Porque no va :(
-    if(this.tiene_letras(this.search)){
-      console.log("tiene letras");
-      this._router.navigate(['/error']);
-    }else{
-      console.log("japones");
-    }
+    //TODO: Check si japones o no
     this._router.navigate(['search/', this.search]);
+    
     //Reinicia les variables
     this.mostrarNHK=true;
     this.cargando=true;
     this.mostrarImagenes=true;
     
   }
+
   /* Funcio que posa play al audio que s'indica */
   playAudio(){
     let audio = new Audio();
@@ -232,6 +262,10 @@ export class ResultadoBusquedaComponent implements OnInit {
           this.mostrarNHK=false;
           console.log("no hi ha nhk")
         }
+        this.cosesquequeden--;
+         if(this.cosesquequeden==0 && this.encontrada==false){
+           this.registrarPalabra();
+         }
       },
       (error) => {
        console.log(error);
@@ -248,7 +282,10 @@ export class ResultadoBusquedaComponent implements OnInit {
         console.log(result);
         this.fraseYahootitle=this.decideQueFraseMostrar(result);
         this.fraseYahoolink=this.decideLinkQueMostrar(result);
-        
+        this.cosesquequeden--;
+        if(this.cosesquequeden==0 && this.encontrada==false){
+          this.registrarPalabra();
+        }
       },
       (error) => {
        console.log(error);
@@ -286,7 +323,7 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.palabraPrincipal=this.search;
     let youglish_widget = new YG.Widget("youglish_widget", {
       width: 640,
-      components: 9, //search box & caption 
+      components: 64, //Segons el numero es veu el buscador i les captions o no
       events: {
         'onFetchDone': function (e:any) {
           if (e.totalResult === 0) alert("No result found");
@@ -313,19 +350,90 @@ export class ResultadoBusquedaComponent implements OnInit {
     this._router.navigate(['error']);
   }
 
+  /* Guarda los datos necesarios para guardar la busqueda de la palabra */
+  guardarFechayPalabra(){
+    this.Log.word=this.search;
+    let d= new Date();
+    let year= d.getFullYear();
+    let month=d.getMonth()+1;
+    let day=d.getDate();
+    let hour=d.getHours();
+    let minute=d.getMinutes();
+    let second=d.getSeconds();
+    let date=year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second;
+    this.Log.search_date=date;
+    console.log(this.Log);
+  }
+
+  /* Resgistra la palabra en la bbdd */
+  registrarPalabra(){
+    this.guardarDatos();
+    this.historial.insertPalabra(this.PalabraInfo)
+       .subscribe(
+         (result:any) => {
+         console.log("palabra registrada");
+         },
+         (error) => {
+         console.log(error);
+         }
+       );
+   }
+
+  /* Busca si esta guradada la palabra en el diccionario de la bbdd para ofrecer la info más rapido */
+  buscarEnDiccionario(){
+    this.historial.getWord(this.palabraPrincipal)
+    .subscribe(
+      (result:any) => {
+      if(result==null){
+        console.log("no encontrada");
+      }else{
+        console.log("encontrada");
+        this.encontrada=true;
+      }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+  /* Guarda los datos en una palabra llamada datos palabra para registrarlo en la bbdd del diccionario */
+  guardarDatos(){
+    this.PalabraInfo.word=this.palabraPrincipal;
+    this.PalabraInfo.example1=this.fraseNHKtitle;
+    this.PalabraInfo.example1link=this.fraseNHKlink;
+    this.PalabraInfo.example2link=this.fraseYahootitle;
+    this.PalabraInfo.example2link=this.fraseYahoolink;
+    this.PalabraInfo.image1=this.imagen1;
+    this.PalabraInfo.image2=this.imagen2;
+    this.PalabraInfo.image3=this.imagen3;
+    this.PalabraInfo.english=this.traduccionIngles;
+    this.PalabraInfo.spanish=this.traduccionEspanol;
+  }
+
   ngOnInit() {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
     this.route.params.subscribe(params => {
     setTimeout(() => {
       this.cargando=false;
+      
     }, 16000);
       this.search = params['word'];
+      /* Guarda la busqueda */
+      this.guardarFechayPalabra();
+      this.registrarBusqueda(); 
+      /* Tradueix al angles i busca imatges*/
       this.traducirIngles();
+      /* Canvis al CSS */
       this.tamanyoPalabrasJapones();
+      /* Traduir al castella */
       this.traducirEspanol();
+      /* Busqueda d'exemples */
       this.buscaExemplesNHK();  
       this.buscaExemplesYahoo();
+      /* Busqueda de videos de youtube */
       this.onYouglishAPIReady();
+      /* Busca en el diccionario */
+      this.buscarEnDiccionario();
     });
   }
 
