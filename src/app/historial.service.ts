@@ -59,12 +59,5 @@ export class HistorialService {
     return this.httpClient.post<any>(this.API_ADDLOG, log, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
   }
 
- //Update veces buscado
- //TODO
- private API_ADDVEZ = "http://localhost:3000/nuevavez";
-
-  public insertVez(): Observable<any> {
-    return this.httpClient.post<any>(this.API_ADDVEZ, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
-  }
 
 }

@@ -50,10 +50,13 @@
           </div>
           <div class="bg-white rounded-xl shadow-lg px-5 py-4 d-lg-none d-block mb-4">
             <h2 class="text-paragraph mb-3">Images</h2>
-            <div class="carouse w-full">
-              <div class="mx-4"><img src="{{imagen1}}" alt="" class="w-260px h-154px object-cover"></div>
-              <div class="mx-4"><img src="{{imagen2}}" alt="" class="w-260px h-154px object-cover"></div>
-              <div class="mx-4"><img src="{{imagen3}}" alt="" class="w-260px h-154px object-cover"></div>
+            <div class="carouse w-full" style="text-align: center;">
+              <button (click)="cambiarImagenIzquierda()" style="float: left;padding-top: 13%; background: none; border: none;"><i class="fas fa-arrow-circle-left" style="color: #BC2C25;font-size: 25px;"></i></button>
+              <button (click)="cambiarImagenDerecha()" style="float: right;padding-top: 13%; background: none; border: none;"><i  class="fas fa-arrow-circle-right" style="color: #BC2C25;font-size: 25px;"></i></button>
+              <div class="mx-4"><img src="{{imagenMovil}}" alt="" class="w-260px h-154px object-cover" id="1"></div>
+              <!-- <div class="mx-4"><img src="{{imagen2}}" alt="" class="w-260px h-154px object-cover hidden"  id="2"></div>
+              <div class="mx-4"><img src="{{imagen3}}" alt="" class="w-260px h-154px object-cover hidden"  id="3"></div> -->
+              
             </div>
           </div>
           <div class="bg-white rounded-xl shadow-lg px-5 py-4 " style="position: relative; height: 330px; overflow-y: scroll;">
@@ -70,22 +73,14 @@
                 <h5 class="text-paragraph">{{fraseNHKtitle}}</h5>
                 <a target="_blank" rel="noopener noreferrer" href="{{fraseNHKlink}}" class="nav-link p-0 text-paragraph h5 mb-0">www.nhk.or.jp</a>
               </div>
-              <!-- <div class="border-left-5 border-color p-2 mb-3">
-                <h5 class="text-paragraph mb-0">2004年に同法人を立ち上げ、地域の食文化の継承や食育活動に
-                  取り組んでいる</h5>
-                <a href="#" class="nav-link p-0 text-paragraph h5 mb-0"> www.asahi.com</a>
-              </div> -->
-              
              </div>
            </div>
         </div>
         <div class="col-lg-4 px-lg-3 px-sm-2 px-1 py-4">
           <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-4">
-            <a href="https://twitter.com/intent/tweet?button_hashtag=LoveTwitter&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #LoveTwitter</a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            <!-- <a class="twitter-timeline" href="https://twitter.com/TwitterDev" data-width="100%" data-height="438">
+            <a class="twitter-timeline" href="https://twitter.com/TwitterDev" data-width="100%" data-height="438">
               Tweets by @TwitterDev
-            </a> -->
+            </a>
           </div>
           <div class="bg-white rounded-xl shadow-lg px-2 py-3">
             <h2 class="text-paragraph px-3">Youtube</h2>

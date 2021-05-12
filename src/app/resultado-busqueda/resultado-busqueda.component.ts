@@ -31,8 +31,8 @@ export class ResultadoBusquedaComponent implements OnInit {
   imagen1="";
   imagen2="";
   imagen3="";
-
-  
+  contador=1;
+  imagenMovil=""
   /* NHK */
   fraseNHKtitle=""
   fraseNHKlink="";
@@ -74,6 +74,10 @@ export class ResultadoBusquedaComponent implements OnInit {
           this.imagen1=result["results"]["0"]["urls"]["regular"];
           this.imagen2=result["results"]["1"]["urls"]["regular"];
           this.imagen3=result["results"]["2"]["urls"]["regular"];
+        
+          this.imagenMovil=this.imagen1;
+          console.log("Imagen movil:"+this.imagenMovil);
+          console.log("Imagen 1:"+this.imagen1);
         }
          this.cosesquequeden--;
          if(this.cosesquequeden==0 && this.encontrada==false){
@@ -190,22 +194,28 @@ export class ResultadoBusquedaComponent implements OnInit {
 
   /* Funcion para comprobar si tiene letras una palabra
   NO FUNCIONA */
-  tiene_letras(texto: string){
+  tiene_letras(){
     var letrasMinusculas="abcdefghyjklmnñopqrstuvwxyz";
-    var letrasMinusculas=letrasMinusculas.toUpperCase();
-    var letras= letrasMinusculas+letrasMinusculas;
-    texto = texto.toLowerCase();
-    for(let i=0; i<texto.length; i++){
-       if (letras.indexOf(texto.charAt(i),0)!=-1){
-          return 1;
-       }
+    var letrasMayusculas=letrasMinusculas.toUpperCase();
+    var letras= letrasMinusculas+letrasMayusculas;
+    var arrayPalabra=this.search.split("");
+    console.log(arrayPalabra);
+    var arrayLetras=letras.split("");
+    console.log(arrayLetras);
+    for (let i = 0; i < arrayPalabra.length; i++) {
+      for (let j = 0; j < arrayLetras.length; j++) {
+        if(arrayPalabra[i]==arrayLetras[j]){
+          this._router.navigate(['/', 'error']);
+        } 
+      }
     }
-    return 0;
+    if(this.search==""){
+      this._router.navigate(['/', 'error']);
+    }
    }
 
   /* Funcio que fa que recarregui la pagina amb la nova paraula que s'ha buscat passant la paraula buscada per la ruta */
   buscar(){
-    //TODO: Check si japones o no
     this._router.navigate(['search/', this.search]);
     
     //Reinicia les variables
@@ -410,14 +420,53 @@ export class ResultadoBusquedaComponent implements OnInit {
     this.PalabraInfo.spanish=this.traduccionEspanol;
   }
 
+  /* Cambia la imatge que es mostra en responsive */
+  cambiarImagenDerecha(){
+    switch (this.contador) {
+      case 1:
+        this.imagenMovil=this.imagen2;
+        this.contador++;
+      break;
+      case 2:
+        this.imagenMovil=this.imagen3;
+        this.contador++;
+      break;
+      case 3:
+        this.imagenMovil=this.imagen1;
+        this.contador=1; 
+      break;
+    }
+   
+  }
+
+   /* Cambia la imatge que es mostra en responsive */
+   cambiarImagenIzquierda(){
+    switch (this.contador) {
+      case 1:
+        this.imagenMovil=this.imagen3;
+        this.contador++;
+      break;
+      case 2:
+        this.imagenMovil=this.imagen1;
+        this.contador++;
+      break;
+      case 3:
+        this.imagenMovil=this.imagen2;
+        this.contador=1; 
+      break;
+    }
+   
+  }
+
+
   ngOnInit() {
     /* Aqui s'agafa la paraula que se li passar i l'associa a la variable busqueda */
     this.route.params.subscribe(params => {
     setTimeout(() => {
       this.cargando=false;
-      
     }, 16000);
       this.search = params['word'];
+      this.tiene_letras();
       /* Guarda la busqueda */
       this.guardarFechayPalabra();
       this.registrarBusqueda(); 
