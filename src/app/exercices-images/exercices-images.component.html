@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
           <button type="button"
-            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0 boto" (click)=buscar()>
             <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
           </button>
     </div>
@@ -61,13 +61,19 @@
   </div>
   <!-- Bottons End -->
    <!-- Exercices Start -->
-   <div style="padding: 7%; padding-left: 28%;">
+   <div *ngIf="hayImagenes" style="padding: 7%; padding-left: 28%;">
     <h1 class="display-5 text-paragraph font-weight-normal text-center">{{palabraPrincipal}}ということは何？?</h1>
     <h1 class="display-5 text-paragraph font-weight-normal text-center">What is {{palabraPrincipal}}？</h1>
   </div>
   <div class="carouse w-full" style="display: -webkit-inline-box;">
-    <div class="mx-4"><img src="{{imagen1}}" alt="" class="w-260px h-154px object-cover"  style="display: inline-block;"></div>
-    <div class="mx-4"><img src="{{imagen2}}" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
-    <div class="mx-4"><img src="{{imagen3}}" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
+    <div class="mx-4"><img (click)="checkCorrecta(1)" src="{{imagen1}}" id="1" alt="" class="w-260px h-154px object-cover"  style="display: inline-block;"></div>
+    <div class="mx-4"><img (click)="checkCorrecta(2)" src="{{imagen2}}" id="2" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
+    <div class="mx-4"><img  (click)="checkCorrecta(3)" src="{{imagen3}}" id="3" alt="" class="w-260px h-154px object-cover" style="display: inline-block;"></div>
   </div>
   <!-- Exercices End -->
+   <!-- Error Start -->
+   <div *ngIf="hayImagenes==false" style="padding: 5% 0% 5% 20%;">
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">貴方の検索に漢字がありません</h1>
+    <h1 class="display-5 text-paragraph font-weight-normal text-center">There is no kanji in this word</h1>
+  </div>
+  <!-- Error End -->

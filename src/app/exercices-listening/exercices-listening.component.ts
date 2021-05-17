@@ -19,7 +19,7 @@ export class ExercicesListeningComponent implements OnInit {
     this.palabraPrincipal=this.search;
     let youglish_widget = new YG.Widget("youglish_widget", {
       width: 640,
-      components: 9, //search box & caption 
+      components: 64, //Segons el numero es veu el buscador i les captions o no
       events: {
         'onFetchDone': function (e:any) {
           if (e.totalResult === 0) alert("No result found");
@@ -45,11 +45,24 @@ export class ExercicesListeningComponent implements OnInit {
     this._router.navigate(['search/', this.search]);
   }
 
+   /* Comprueba si esta bien o no la lectura introducida */
+   checkSiEstaBien(){
+    if(this.answer.includes(this.palabraPrincipal)){
+      document.getElementById("correcto").style.display="inherit";
+      document.getElementById("incorrecto").style.display="none";
+
+    }else{
+      document.getElementById("incorrecto").style.display="inherit";
+      document.getElementById("correcto").style.display="none";
+    }
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.search = params['word'];
       this.palabraPrincipal=this.search;
+      this.onYouglishAPIReady();
     });
-  }
+  }    
 
 }

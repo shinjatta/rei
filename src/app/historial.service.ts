@@ -23,7 +23,6 @@ export class HistorialService {
     );
   }
   //Get ranking
-  //TODO
   private API_RANKING = "http://localhost:3000/ranking/";
 
   public getRanking()
@@ -34,7 +33,6 @@ export class HistorialService {
   }
 
   //Get ultimas buscadas (per als exercis)
-  //TODO
   private API_ULTIMAS = "http://localhost:3000/ultimas/";
 
   public getUltimas()

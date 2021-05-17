@@ -3,12 +3,6 @@ body {
     
 }
 
-/* boton */
-.boto:hover{
-    background-color: #E16C66;
-   }
-
-
 /* ==== Colors === */
 
 /* bg-color */
@@ -66,6 +60,10 @@ body {
     font-size: x-large;
 }
 
+.boto:hover{
+    background-color: #E16C66;
+   }
+
 /* Margin */
 
 @media (min-width: 768px) {
@@ -73,6 +71,7 @@ body {
         margin-top: -64px;
     }
 }
+
 
 /* Font Weight */
 

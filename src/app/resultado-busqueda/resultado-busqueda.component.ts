@@ -192,9 +192,8 @@ export class ResultadoBusquedaComponent implements OnInit {
     );
   }
 
-  /* Funcion para comprobar si tiene letras una palabra
-  NO FUNCIONA */
-  tiene_letras(){
+  /* Funcion para comprobar si tiene letras una palabra */
+  tieneLetras(){
     var letrasMinusculas="abcdefghyjklmnñopqrstuvwxyz";
     var letrasMayusculas=letrasMinusculas.toUpperCase();
     var letras= letrasMinusculas+letrasMayusculas;
@@ -387,7 +386,7 @@ export class ResultadoBusquedaComponent implements OnInit {
          console.log(error);
          }
        );
-   }
+  }
 
   /* Busca si esta guradada la palabra en el diccionario de la bbdd para ofrecer la info más rapido */
   buscarEnDiccionario(){
@@ -406,6 +405,7 @@ export class ResultadoBusquedaComponent implements OnInit {
       }
     );
   }
+
   /* Guarda los datos en una palabra llamada datos palabra para registrarlo en la bbdd del diccionario */
   guardarDatos(){
     this.PalabraInfo.word=this.palabraPrincipal;
@@ -466,7 +466,7 @@ export class ResultadoBusquedaComponent implements OnInit {
       this.cargando=false;
     }, 16000);
       this.search = params['word'];
-      this.tiene_letras();
+      this.tieneLetras();
       /* Guarda la busqueda */
       this.guardarFechayPalabra();
       this.registrarBusqueda(); 

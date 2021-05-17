@@ -18,7 +18,7 @@
         </div>
         <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1">
           <button type="button"
-            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" (click)=buscar()>
+            class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0 boto" (click)=buscar()>
             <span class="ml-2 d-sm-block d-none"><i class="fas fa-search"></i> SEARCH</span>
           </button>
         </div>
@@ -68,10 +68,13 @@
   </div>
   <div id="youglish_widget"></div>
   <form class="row no-gutters">
-    <div class="col-lg-8 col-md-7 col-8 px-lg-3 px-sm-2 px-1">
-      <input [(ngModel)]="answer" class="form-control bg-white rounded-lg shadow border-0 w-100 h-50px px-4 mr-lg-4 mr-2" type="text"
-      placeholder="Type it here..." name="answer" id="inputAnswer">
-    </div>
+      <div class="col-lg-8 col-md-7 col-8 px-lg-3 px-sm-2 px-1">
+        <input [(ngModel)]="answer" class="form-control bg-white rounded-lg shadow border-0 w-100 h-50px px-4 mr-lg-4 mr-2" type="text"
+        placeholder="Type it here..." name="answer" id="inputAnswer">
+      </div>
+      <button  (click)=checkSiEstaBien() type="button" style="font-size: large; margin-left: 5%;" class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0 col-lg-1 boto"><i class="fas fa-spell-check"></i></button>
+      <img id="correcto" class="col-lg-1" style="padding: 10px; margin-left: 27px; padding-top: 0px; display: none;" src="../../assets/correcto.png" alt="">
+      <img id="incorrecto" class="col-lg-1" style="padding: 10px; margin-left: 27px; padding-top: 0px; display: none;"  src="../../assets/cruz.png" alt="">
     <div class="col-lg-4 col-md-5 col-4 px-lg-3 px-sm-2 px-1" style="display: none;">
       <div class="btn bg-red rounded-xl h-50px w-100 text-white font-weight-semibold shadow-sm d-flex justify-content-center align-items-center px-lg-5 px-md-4 p-0" >
     </div>
