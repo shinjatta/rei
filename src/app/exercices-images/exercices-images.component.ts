@@ -14,9 +14,11 @@ export class ExercicesImagesComponent implements OnInit {
   lectura="";
   traduccionIngles="";
   hayImagenes=true;
-  palabraIncorrecta1="";
-  palabraIncorrecta2="";
+  imagenIncorrecta1="";
+  imagenIncorrecta2="";
+  imagenCorrecta="";
   numeros:any[];
+  cosesQueQueden=1;
   /* Imagenes */
   imagen1="";
   imagen2="";
@@ -35,45 +37,13 @@ export class ExercicesImagesComponent implements OnInit {
         if(result["total"]==0){
           this.hayImagenes=false;
        }else{
-        let numero= Math.floor(Math.random() * (3 - 1)) + 1;
-        let repeat=true;
-        while (repeat) {
-          switch (numero) {
-            case 1:
-              if(this.imagen1!=""){
-                numero=2;
-              }else{
-                this.imagen1=result["results"]["0"]["urls"]["regular"];
-                repeat=false;
-                if(this.respostaCorrecta==0){
-                  this.respostaCorrecta=1;
-                }
-              }
-              break;
-            case 2:
-              if(this.imagen2!=""){
-                numero=3;
-              }else{
-                this.imagen2=result["results"]["3"]["urls"]["regular"];
-                repeat=false;
-                if(this.respostaCorrecta==0){
-                  this.respostaCorrecta=2;
-                }
-              }
-              break;
-            case 3:
-              if(this.imagen3!=""){
-                numero=1;
-              }else{
-                this.imagen3=result["results"]["0"]["urls"]["regular"];
-                repeat=false;
-                if(this.respostaCorrecta==0){
-                  this.respostaCorrecta=3;
-                }
-              }
-              break;
-          }
-        }
+         this.imagenCorrecta=result["results"]["0"]["urls"]["regular"];
+         
+         if(this.cosesQueQueden==0){
+           this.ponerAleatorio();
+         }else{
+          this.cosesQueQueden--;
+         }
       }
        },
        (error) => {
@@ -84,22 +54,102 @@ export class ExercicesImagesComponent implements OnInit {
 
 /* Comprueba si la que se pico es correcta */
 checkCorrecta(numero){
-  let imagenSeleccionada=document.getElementById(numero)
-  if(imagenSeleccionada.style.borderStyle=="solid"){
-    imagenSeleccionada.style.borderStyle="none";
-    imagenSeleccionada.style.borderRadius="0px";
-  }else{
-    if(numero==this.respostaCorrecta){
-      imagenSeleccionada.style.borderColor="#5BCA38";
-      imagenSeleccionada.style.borderStyle="solid";
-      imagenSeleccionada.style.borderWidth="4px";
-      imagenSeleccionada.style.borderRadius="15px";
-    }else{
-      imagenSeleccionada.style.borderColor="#b91e15";
-      imagenSeleccionada.style.borderStyle="solid";
-      imagenSeleccionada.style.borderWidth="4px";
-      imagenSeleccionada.style.borderRadius="15px";
-    }
+  let imagenSeleccionada=document.getElementById(numero);
+  switch (numero) {
+    case 1:
+      /* Si picas la imagen y ya tiene borde lo quita */
+      if(imagenSeleccionada.style.borderStyle=="solid"){
+        imagenSeleccionada.style.borderStyle="none";
+        imagenSeleccionada.style.borderRadius="0px";
+      }else{
+        /* Cambia el margen de la imagen seleccionada */
+        if(numero==this.respostaCorrecta){
+          imagenSeleccionada.style.borderColor="#5BCA38";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }else{
+          imagenSeleccionada.style.borderColor="#b91e15";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }
+      }
+      /* Quita los margenes de las otras */
+      let otraImagen11=document.getElementById("2");
+      let otraImagen21=document.getElementById("3");
+      if(otraImagen11.style.borderStyle=="solid"){
+        otraImagen11.style.borderStyle="none";
+        otraImagen11.style.borderRadius="0px";
+      }
+      if(otraImagen21.style.borderStyle=="solid"){
+        otraImagen21.style.borderStyle="none";
+        otraImagen21.style.borderRadius="0px";
+      }
+      
+    break;
+    case 2:
+      /* Si picas la imagen y ya tiene borde lo quita */
+      if(imagenSeleccionada.style.borderStyle=="solid"){
+        imagenSeleccionada.style.borderStyle="none";
+        imagenSeleccionada.style.borderRadius="0px";
+      }else{
+        /* Cambia el margen de la imagen seleccionada */
+        if(numero==this.respostaCorrecta){
+          imagenSeleccionada.style.borderColor="#5BCA38";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }else{
+          imagenSeleccionada.style.borderColor="#b91e15";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }
+      }
+      /* Quita los margenes de las otras */
+      let otraImagen12=document.getElementById("1");
+      let otraImagen22=document.getElementById("3");
+      if(otraImagen12.style.borderStyle=="solid"){
+        otraImagen12.style.borderStyle="none";
+        otraImagen12.style.borderRadius="0px";
+      }
+      if(otraImagen22.style.borderStyle=="solid"){
+        otraImagen22.style.borderStyle="none";
+        otraImagen22.style.borderRadius="0px";
+      }
+    break;
+    case 3:
+      /* Si picas la imagen y ya tiene borde lo quita */
+      if(imagenSeleccionada.style.borderStyle=="solid"){
+        imagenSeleccionada.style.borderStyle="none";
+        imagenSeleccionada.style.borderRadius="0px";
+      }else{
+        /* Cambia el margen de la imagen seleccionada */
+        if(numero==this.respostaCorrecta){
+          imagenSeleccionada.style.borderColor="#5BCA38";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }else{
+          imagenSeleccionada.style.borderColor="#b91e15";
+          imagenSeleccionada.style.borderStyle="solid";
+          imagenSeleccionada.style.borderWidth="4px";
+          imagenSeleccionada.style.borderRadius="15px";
+        }
+      }
+      /* Quita los margenes de las otras */
+      let otraImagen13=document.getElementById("1");
+      let otraImagen23=document.getElementById("2");
+      if(otraImagen13.style.borderStyle=="solid"){
+        otraImagen13.style.borderStyle="none";
+        otraImagen13.style.borderRadius="0px";
+      }
+      if(otraImagen23.style.borderStyle=="solid"){
+        otraImagen23.style.borderStyle="none";
+        otraImagen23.style.borderRadius="0px";
+      }
+    break;
   }
 }
 
@@ -109,10 +159,14 @@ getUltimas(){
        (result:any) => {
         if(result["total"]!=0){
           console.log(result);
-          this.palabraIncorrecta1=result["0"];
-          this.palabraIncorrecta2=result["3"];
-          this.buscaUnsplash(this.palabraIncorrecta1);
-          this.buscaUnsplash(this.palabraIncorrecta2);
+          this.imagenIncorrecta1=result["0"]["image2"];
+          this.imagenIncorrecta2=result["3"]["image1"];
+          console.log("Dentro get Ultimas "+this.imagenIncorrecta1);
+          if(this.cosesQueQueden==0){
+            this.ponerAleatorio();
+          }else{
+           this.cosesQueQueden--;
+          }
         }
        },
        (error) => {
@@ -120,6 +174,29 @@ getUltimas(){
        }
      );
    }
+/* Ponerlas aleatoriamente */
+ponerAleatorio(){
+  this.respostaCorrecta= Math.floor(Math.random() * (3 - 1)) + 1;
+  switch (this.respostaCorrecta) {
+    case 1:
+      this.imagen1=this.imagenCorrecta;
+      this.imagen2=this.imagenIncorrecta1;
+      this.imagen3=this.imagenIncorrecta2;
+      break;
+    case 2:
+      this.imagen1=this.imagenIncorrecta1;
+      this.imagen2=this.imagenCorrecta;
+      this.imagen3=this.imagenIncorrecta2;
+    break;
+    case 3:
+      this.imagen1=this.imagenIncorrecta1;
+      this.imagen2=this.imagenIncorrecta2;
+      this.imagen3=this.imagenCorrecta;
+    break;  
+    default:
+      break;
+  }
+}
 
 /* Aquesta funció recull la paraula que s'ha passat i la tradueix al anglés amb l'ajuda dela api de jisho */
 traducirIngles(paraula){
@@ -149,7 +226,7 @@ traducirIngles(paraula){
       console.log("hh");
       this.traducirIngles(this.search);
       this.getUltimas();
-      
+      console.log("dentro del on init "+this.imagenIncorrecta1);      
     });
   }
 
