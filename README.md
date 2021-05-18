@@ -8,4 +8,4 @@ To run this project type npm start. Do not forget that it has a backend part at 
 
 ## Presentation video
 
-<iframe width="520" height="315"  src="https://www.youtube.com/embed/uO6Qi7JWq1o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.youtube.com/embed/uO6Qi7JWq1o
