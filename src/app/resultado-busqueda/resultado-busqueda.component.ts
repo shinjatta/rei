@@ -196,7 +196,7 @@ export class ResultadoBusquedaComponent implements OnInit {
   tieneLetras(){
     var letrasMinusculas="abcdefghyjklmnñopqrstuvwxyz";
     var letrasMayusculas=letrasMinusculas.toUpperCase();
-    var letras= letrasMinusculas+letrasMayusculas;
+    var letras= letrasMinusculas+letrasMayusculas+".-?¿`+´ç1234567890,;:_¨Ç*^'¡!·$%&/()=ªº\|@#¢∞¬÷“”≠´‚[]}{–…„";
     var arrayPalabra=this.search.split("");
     console.log(arrayPalabra);
     var arrayLetras=letras.split("");
